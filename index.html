@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KAAN DIGDIGOĞLU</title>
-    <meta name="description" content="Professional music for media portfolio">
+    <meta name="description" content="Music for Media">
     <meta property="og:title" content="KAAN DIGDIGOĞLU">
-    <meta property="og:description" content="Professional music for media portfolio">
+    <meta property="og:description" content="Music for Media">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.digdigson.com/">
     <meta property="og:image" content="https://www.digdigson.com/assets/images/Untitled%20(17).png">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="KAAN DIGDIGOĞLU">
-    <meta name="twitter:description" content="Professional music for media portfolio">
+    <meta name="twitter:description" content="Music for Media">
     <meta name="twitter:image" content="https://www.digdigson.com/assets/images/Untitled%20(17).png">
     <link rel="icon" type="image/png" href="assets/images/Untitled (17).png">
     
@@ -150,6 +150,21 @@
         }
         
         .hero-overlay {
+            pointer-events: none;
+        }
+
+        .hero-logo-backdrop {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -52%);
+            width: min(92vw, 760px);
+            height: clamp(320px, 58vh, 560px);
+            background: rgba(28, 28, 30, 0.92);
+            border-radius: clamp(28px, 9vw, 56px);
+            box-shadow: 0 32px 72px rgba(0, 0, 0, 0.55);
+            backdrop-filter: blur(12px);
+            z-index: 2;
             pointer-events: none;
         }
         
@@ -541,6 +556,12 @@
                 min-height: 82vh;
             }
 
+            .hero-logo-backdrop {
+                width: min(92vw, 620px);
+                height: clamp(280px, 54vh, 500px);
+                transform: translate(-50%, -50%);
+            }
+
             #home .hero-overlay {
                 align-self: stretch;
             }
@@ -571,6 +592,13 @@
                 width: clamp(280px, 78vw, 520px) !important;
                 max-width: 88vw !important;
             }
+
+            .hero-logo-backdrop {
+                width: min(96vw, 560px);
+                height: clamp(260px, 50vh, 420px);
+                border-radius: clamp(22px, 12vw, 42px);
+                transform: translate(-50%, -46%);
+            }
             
             #bio {
                 padding-top: 48px;
@@ -589,17 +617,16 @@
 
         @media (max-width: 768px) {
             .credits-grid {
-                display: grid !important;
-                grid-auto-flow: column;
-                grid-auto-columns: 85%;
+                display: flex !important;
                 overflow-x: auto;
                 gap: 1.5rem;
-                padding-bottom: 1.5rem;
+                padding: 0 1.25rem 1.5rem;
                 scroll-snap-type: x mandatory;
                 -ms-overflow-style: none;
             }
 
             .credits-grid .credit-card {
+                flex: 0 0 85%;
                 scroll-snap-align: center;
             }
         }
@@ -642,6 +669,7 @@
             <source src="https://mw2alvpstujdqqtj.public.blob.vercel-storage.com/Video_final2.mp4" type="video/mp4">
         </video>
         <div class="hero-overlay"></div>
+        <div class="hero-logo-backdrop"></div>
         <div class="max-w-5xl mx-auto text-center section-border section-border-home">
             <img src="assets/images/Untitled (16).png" alt="DIGDIGSON - Music for Media" class="hero-logo fade-in-up" loading="eager" decoding="async">
         </div>
@@ -910,6 +938,30 @@
         if (creditsContainer) {
             let autoScrollEnabled = true;
             let lastUserInteraction = Date.now();
+            let hasInitializedScroll = false;
+
+            const setToFirstCard = (behavior = 'auto') => {
+                if (window.innerWidth > 768) return;
+                if (behavior === 'auto') {
+                    creditsContainer.scrollLeft = 0;
+                } else {
+                    creditsContainer.scrollTo({ left: 0, behavior });
+                }
+            };
+
+            const ensureFirstCardVisible = () => {
+                if (!hasInitializedScroll) {
+                    setToFirstCard('auto');
+                    hasInitializedScroll = true;
+                }
+            };
+
+            ensureFirstCardVisible();
+
+            window.addEventListener('resize', () => {
+                if (window.innerWidth > 768) return;
+                setToFirstCard('auto');
+            });
 
             const pauseAutoScroll = () => {
                 autoScrollEnabled = false;
