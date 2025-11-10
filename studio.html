@@ -142,89 +142,17 @@
             z-index: 1;
         }
 
-        /* Studio hero */
-        #studio-hero {
-            position: relative;
-            min-height: 100vh;
-            width: 100%;
-            display: grid;
-            place-items: center;
-            overflow: hidden;
-            isolation: isolate;
+        :root {
+            --nav-h: 72px;
         }
 
-        #studio-hero::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: url('assets/images/image.png') center/cover no-repeat;
-            transform: scale(1.05);
-            filter: brightness(0.6);
-            animation: studioFade 1.2s ease-out both;
-        }
-
-        #studio-hero::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(
-                to bottom,
-                rgba(10, 10, 10, 0.35) 0%,
-                rgba(10, 10, 10, 0.4) 100%
-            );
-            z-index: 0;
-        }
-
-        .studio-hero-overlay {
-            position: absolute;
-            inset: 0;
-            background: rgba(10, 10, 10, 0.25);
-        }
-
-        .studio-hero-content {
-            position: relative;
-            z-index: 1;
-            text-align: center;
-            color: #f3f4f6;
-            text-shadow: 0 12px 32px rgba(0, 0, 0, 0.55);
-            animation: heroContentFade 1.1s ease-out 0.25s both;
-        }
-
-        .studio-hero-title {
-            font-family: 'Bebas Neue', 'Oswald', sans-serif;
-            font-size: clamp(3.5rem, 9vw, 7rem);
-            letter-spacing: 0.18em;
-        }
-
-        .studio-hero-subtitle {
-            margin-top: 0.75rem;
-            font-size: clamp(1.1rem, 2.5vw, 1.6rem);
-            letter-spacing: 0.32em;
-            text-transform: uppercase;
-        }
-
-        @keyframes studioFade {
-            from {
-                transform: scale(1.12);
-                filter: brightness(0.45);
-                opacity: 0;
-            }
-            to {
-                transform: scale(1.05);
-                filter: brightness(0.6);
-                opacity: 1;
-            }
-        }
-
-        @keyframes heroContentFade {
-            from {
-                opacity: 0;
-                transform: translateY(26px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .studio-hero {
+            margin-top: var(--nav-h);
+            min-height: calc(100vh - var(--nav-h));
+            background-image: url("assets/images/WhatsApp Görsel 2025-11-10 saat 02.51.12_9047c924.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
         }
 
         /* Specs */
@@ -275,31 +203,19 @@
             box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.15);
         }
 
-        @media (max-width: 1024px) {
-            #studio-hero {
-                min-height: 80vh;
-            }
-        }
-
         @media (max-width: 768px) {
-            #studio-hero {
-                min-height: 70vh;
+            .studio-hero {
+                min-height: calc(90vh - var(--nav-h));
             }
-
-            .studio-hero-title {
-                letter-spacing: 0.2em;
-            }
-
             .spec-card {
                 padding: 2rem;
             }
         }
 
         @media (max-width: 640px) {
-            #studio-hero {
-                min-height: 60vh;
+            .studio-hero {
+                min-height: calc(85vh - var(--nav-h));
             }
-
             .spec-card li {
                 font-size: 1rem;
                 margin-bottom: 0.85rem;
@@ -337,13 +253,7 @@
     </header>
 
     <!-- Studio Hero -->
-    <section id="studio-hero" aria-label="Studio background">
-        <div class="studio-hero-overlay"></div>
-        <div class="studio-hero-content">
-            <h1 class="studio-hero-title">KAAN DİĞDİĞOĞLU</h1>
-            <p class="studio-hero-subtitle">Music for Media</p>
-        </div>
-    </section>
+    <div class="studio-hero" aria-label="Studio photo"></div>
 
     <!-- Specs Section -->
     <section id="studio-specs" class="py-20 px-6">
