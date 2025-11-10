@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 :root {
+  /* Trigger redeploy */
+}
+
+:root {
   --background: #ffffff;
   --foreground: #171717;
 }
