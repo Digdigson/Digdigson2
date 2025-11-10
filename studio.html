@@ -156,6 +156,144 @@
             position: relative;
             z-index: 1;
         }
+
+        /* Studio hero */
+        #studio-hero {
+            position: relative;
+            height: 74vh;
+            min-height: 520px;
+            width: 100%;
+            display: grid;
+            place-items: center;
+            padding-top: 96px;
+            overflow: hidden;
+            background: url('assets/images/image.png') center/cover no-repeat;
+        }
+
+        #studio-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to bottom,
+                rgba(10, 10, 10, 0.4) 0%,
+                rgba(10, 10, 10, 0.6) 60%,
+                rgba(10, 10, 10, 0.8) 100%
+            );
+            z-index: 0;
+        }
+
+        .studio-hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(10, 10, 10, 0.4);
+            z-index: 0;
+        }
+
+        .studio-hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 0 1.5rem;
+        }
+
+        .studio-hero-title {
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-family: 'Playfair Display', serif;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .studio-hero-tagline {
+            margin-top: 1.5rem;
+            font-size: clamp(1rem, 2.4vw, 1.5rem);
+            color: #d1d5db;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        /* Specs */
+        #studio-specs {
+            background: #050505;
+        }
+
+        .spec-card {
+            background: rgba(17, 24, 39, 0.65);
+            border: 1px solid rgba(55, 65, 81, 0.6);
+            border-radius: 20px;
+            padding: 2.5rem;
+            backdrop-filter: blur(6px);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45);
+        }
+
+        .spec-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .spec-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .spec-card li {
+            position: relative;
+            padding-left: 1.75rem;
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+            color: #d1d5db;
+        }
+
+        .spec-card li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.6rem;
+            width: 0.45rem;
+            height: 0.45rem;
+            border-radius: 9999px;
+            background: #10b981;
+            box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.15);
+        }
+
+        @media (max-width: 1024px) {
+            #studio-hero {
+                height: 68vh;
+                min-height: 460px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            #studio-hero {
+                height: auto;
+                min-height: 420px;
+                padding: 120px 1.5rem 80px;
+            }
+
+            .spec-card {
+                padding: 2rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            #studio-hero {
+                min-height: 380px;
+                padding: 112px 1.25rem 72px;
+            }
+
+            .studio-hero-title {
+                font-size: clamp(2.5rem, 12vw, 4rem);
+            }
+
+            .spec-card li {
+                font-size: 1rem;
+                margin-bottom: 0.85rem;
+            }
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -187,27 +325,56 @@
         </div>
     </header>
 
-    <!-- Studio Section -->
-    <section class="py-20 px-6 bg-black pt-32">
-        <div class="max-w-4xl mx-auto">
-            <div class="fade-on-scroll section-border section-border-studio">
-                <h2 class="text-4xl font-bold mb-8 text-white">Studio</h2>
-                <div class="prose prose-lg max-w-none text-gray-300 leading-relaxed space-y-6">
-                    <p>
-                        My studio is equipped with state-of-the-art technology and a comprehensive collection of orchestral 
-                        samples and virtual instruments. I work in a professional environment designed to deliver the highest 
-                        quality music production for media projects.
-                    </p>
-                    <p>
-                        The workflow is optimized for collaboration with directors, editors, and producers, allowing for 
-                        seamless communication and rapid iteration. Whether working on a tight deadline for a trailer or 
-                        developing a full score over several months, the studio is set up to handle projects of any scale.
-                    </p>
-                    <p>
-                        I specialize in creating custom music that perfectly matches the vision of each project, from intimate 
-                        character moments to epic action sequences. The goal is always to enhance the storytelling through 
-                        carefully crafted musical compositions.
-                    </p>
+    <!-- Studio Hero -->
+    <section id="studio-hero">
+        <div class="studio-hero-overlay"></div>
+        <div class="studio-hero-content fade-on-scroll">
+            <h1 class="studio-hero-title tracking-[0.35em]">Studio</h1>
+            <p class="studio-hero-tagline">Crafted Sound. Hybrid Precision.</p>
+        </div>
+    </section>
+
+    <!-- Specs Section -->
+    <section id="studio-specs" class="py-20 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="fade-on-scroll section-border section-border-studio mb-16">
+                <h2 class="text-4xl font-bold text-white mb-6">Studio Specs</h2>
+                <p class="text-lg text-gray-300 max-w-3xl">
+                    A hybrid studio designed for cinematic scoring, live performance capture, and detailed sound design. Each piece of gear is curated to deliver clarity, warmth, and impact across every project.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+                <div class="spec-card fade-on-scroll">
+                    <h3>Production & Monitoring</h3>
+                    <ul>
+                        <li>Intel Core i7-13700K</li>
+                        <li>128 GB DDR5 RAM</li>
+                        <li>2 TB NVMe SSD + 4 TB External SSD</li>
+                        <li>Focusrite Scarlett 18i8 (3rd Gen)</li>
+                        <li>M-Audio Hammer 88 Pro</li>
+                        <li>Yamaha HS5</li>
+                        <li>Beyerdynamic DT 770 Pro</li>
+                        <li>Audio-Technica ATH-M20x</li>
+                        <li>MXL 990 Condenser Mic</li>
+                    </ul>
+                </div>
+                <div class="spec-card fade-on-scroll">
+                    <h3>Instruments & Pedals</h3>
+                    <ul>
+                        <li>Fender Telecaster</li>
+                        <li>Taylor 114ce</li>
+                        <li>G&amp;L L-2000 Bass</li>
+                        <li>Nux Cerberus Multi-FX Unit</li>
+                        <li>Boss Blues Driver (BD-2)</li>
+                        <li>MXR Custom Badass ’78 Distortion</li>
+                        <li>Klon Centaur</li>
+                        <li>Ibanez TS9 Tube Screamer</li>
+                        <li>Marshall Bluesbreaker (Clone)</li>
+                        <li>MXR Super Compressor</li>
+                        <li>Behringer BEQ 700 Bass EQ</li>
+                        <li>Dunlop Cry Baby Wah</li>
+                        <li>Digitech Whammy 4</li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -217,7 +384,7 @@
     <footer class="bg-gray-900 border-t border-gray-800">
         <div class="max-w-7xl mx-auto px-6 py-8">
             <p class="text-center text-sm text-gray-400">
-                Copyright © <span id="current-year"></span> Music Portfolio. All rights reserved.
+                Copyright © <span id="current-year"></span> Digdigson. All rights reserved.
             </p>
         </div>
     </footer>
