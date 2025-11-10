@@ -3,8 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Music Portfolio</title>
+    <title>KAAN DIGDIGOĞLU</title>
     <meta name="description" content="Professional music for media portfolio">
+    <meta property="og:title" content="KAAN DIGDIGOĞLU">
+    <meta property="og:description" content="Professional music for media portfolio">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.digdigson.com/">
+    <meta property="og:image" content="https://www.digdigson.com/assets/images/Untitled%20(17).png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="KAAN DIGDIGOĞLU">
+    <meta name="twitter:description" content="Professional music for media portfolio">
+    <meta name="twitter:image" content="https://www.digdigson.com/assets/images/Untitled%20(17).png">
     <link rel="icon" type="image/png" href="assets/images/Untitled (17).png">
     
     <!-- Tailwind CSS -->
@@ -527,7 +536,7 @@
             #home .hero-logo,
             #home .logo-container,
             #home img[alt*="DIGDIGSON"] {
-                top: -60px !important;
+                top: 0 !important;
                 width: clamp(240px, 48vw, 480px) !important;
                 max-width: 90vw !important;
             }
@@ -545,6 +554,23 @@
             #home img[alt*="DIGDIGSON"] {
                 width: clamp(320px, 48vw, 600px) !important;
                 max-width: 90vw !important;
+            }
+            
+            #home {
+                place-items: center !important;
+                padding-top: calc(var(--nav-h, 56px) + 16px) !important;
+            }
+
+            #home .hero-overlay {
+                align-self: stretch;
+            }
+            
+            #home .hero-logo,
+            #home .logo-container,
+            #home img[alt*="DIGDIGSON"] {
+                margin-top: 0 !important;
+                margin-bottom: 0 !important;
+                position: relative !important;
             }
         }
     </style>
