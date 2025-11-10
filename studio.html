@@ -147,6 +147,7 @@
         }
 
         .studio-hero {
+            position: relative;
             margin-top: var(--nav-h);
             min-height: calc(100vh - var(--nav-h));
             background-image: url("assets/images/WhatsApp Görsel 2025-11-10 saat 02.51.12_9047c924.jpg");
@@ -155,9 +156,23 @@
             background-repeat: no-repeat;
         }
 
+        .studio-hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to bottom,
+                rgba(28, 30, 34, 0.32) 0%,
+                rgba(18, 20, 24, 0.38) 45%,
+                rgba(10, 12, 16, 0.42) 100%
+            );
+        }
+
         /* Specs */
         #studio-specs {
             background: #050505;
+            margin-top: -56px;
+            padding-top: 120px;
         }
 
         .spec-card {
@@ -206,6 +221,7 @@
         @media (max-width: 768px) {
             .studio-hero {
                 min-height: calc(90vh - var(--nav-h));
+                background-position: center top;
             }
             .spec-card {
                 padding: 2rem;
@@ -214,7 +230,7 @@
 
         @media (max-width: 640px) {
             .studio-hero {
-                min-height: calc(85vh - var(--nav-h));
+                min-height: calc(90vh - var(--nav-h));
             }
             .spec-card li {
                 font-size: 1rem;
