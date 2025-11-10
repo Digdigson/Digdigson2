@@ -603,6 +603,18 @@
                 scroll-snap-align: center;
             }
         }
+
+        .contact-item-icon {
+            flex-shrink: 0;
+        }
+
+        .contact-item-content {
+            min-width: 0;
+        }
+
+        .contact-item-content .text-white {
+            overflow-wrap: anywhere;
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -749,19 +761,19 @@
                 <h2 class="text-4xl font-bold mb-12 text-white">Contact</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <a href="mailto:kaan.digdigoglu@gmail.com" class="contact-item flex items-center space-x-4 p-6 bg-gray-900 rounded-lg hover:shadow-md transition-shadow border border-gray-800">
-                        <div class="w-12 h-12 rounded-full bg-white text-gray-900 flex items-center justify-center">
+                        <div class="w-12 h-12 rounded-full bg-white text-gray-900 flex items-center justify-center contact-item-icon">
                             <i class="fas fa-envelope text-xl"></i>
                         </div>
-                        <div>
+                        <div class="contact-item-content">
                             <div class="text-sm text-gray-400 mb-1">Email</div>
                             <div class="text-white font-medium">kaan.digdigoglu@gmail.com</div>
                         </div>
                     </a>
                     <a href="https://instagram.com/kaandigdigoglu" target="_blank" rel="noopener noreferrer" class="contact-item flex items-center space-x-4 p-6 bg-gray-900 rounded-lg hover:shadow-md transition-shadow border border-gray-800">
-                        <div class="w-12 h-12 rounded-full bg-white text-gray-900 flex items-center justify-center">
+                        <div class="w-12 h-12 rounded-full bg-white text-gray-900 flex items-center justify-center contact-item-icon">
                             <i class="fab fa-instagram text-xl"></i>
                         </div>
-                        <div>
+                        <div class="contact-item-content">
                             <div class="text-sm text-gray-400 mb-1">Instagram</div>
                             <div class="text-white font-medium">@kaandigdigoglu</div>
                         </div>
