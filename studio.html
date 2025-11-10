@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Studio - Kaan Dığdığoğlu</title>
     <meta name="description" content="Studio information">
+    <link rel="icon" type="image/png" href="assets/images/Untitled (17).png">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -160,56 +161,31 @@
         /* Studio hero */
         #studio-hero {
             position: relative;
-            height: 74vh;
-            min-height: 520px;
+            height: 80vh;
+            min-height: 540px;
             width: 100%;
-            display: grid;
-            place-items: center;
-            padding-top: 96px;
             overflow: hidden;
-            background: url('assets/images/image.png') center/cover no-repeat;
         }
 
         #studio-hero::before {
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(
-                to bottom,
-                rgba(10, 10, 10, 0.4) 0%,
-                rgba(10, 10, 10, 0.6) 60%,
-                rgba(10, 10, 10, 0.8) 100%
-            );
-            z-index: 0;
+            background: url('assets/images/image.png') center/cover no-repeat;
+            filter: brightness(0.45);
+            transform: scale(1.08);
         }
 
-        .studio-hero-overlay {
+        #studio-hero::after {
+            content: '';
             position: absolute;
             inset: 0;
-            background: rgba(10, 10, 10, 0.4);
-            z-index: 0;
-        }
-
-        .studio-hero-content {
-            position: relative;
-            z-index: 1;
-            text-align: center;
-            padding: 0 1.5rem;
-        }
-
-        .studio-hero-title {
-            font-size: clamp(3rem, 8vw, 5rem);
-            font-family: 'Playfair Display', serif;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-        }
-
-        .studio-hero-tagline {
-            margin-top: 1.5rem;
-            font-size: clamp(1rem, 2.4vw, 1.5rem);
-            color: #d1d5db;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
+            background: linear-gradient(
+                to bottom,
+                rgba(10, 10, 10, 0.6) 0%,
+                rgba(10, 10, 10, 0.7) 35%,
+                rgba(10, 10, 10, 0.8) 100%
+            );
         }
 
         /* Specs */
@@ -269,9 +245,8 @@
 
         @media (max-width: 768px) {
             #studio-hero {
-                height: auto;
-                min-height: 420px;
-                padding: 120px 1.5rem 80px;
+                height: 62vh;
+                min-height: 360px;
             }
 
             .spec-card {
@@ -280,15 +255,6 @@
         }
 
         @media (max-width: 640px) {
-            #studio-hero {
-                min-height: 380px;
-                padding: 112px 1.25rem 72px;
-            }
-
-            .studio-hero-title {
-                font-size: clamp(2.5rem, 12vw, 4rem);
-            }
-
             .spec-card li {
                 font-size: 1rem;
                 margin-bottom: 0.85rem;
@@ -326,26 +292,17 @@
     </header>
 
     <!-- Studio Hero -->
-    <section id="studio-hero">
-        <div class="studio-hero-overlay"></div>
-        <div class="studio-hero-content fade-on-scroll">
-            <h1 class="studio-hero-title tracking-[0.35em]">Studio</h1>
-            <p class="studio-hero-tagline">Crafted Sound. Hybrid Precision.</p>
-        </div>
-    </section>
+    <section id="studio-hero" aria-label="Studio background"></section>
 
     <!-- Specs Section -->
     <section id="studio-specs" class="py-20 px-6">
         <div class="max-w-6xl mx-auto">
             <div class="fade-on-scroll section-border section-border-studio mb-16">
-                <h2 class="text-4xl font-bold text-white mb-6">Studio Specs</h2>
-                <p class="text-lg text-gray-300 max-w-3xl">
-                    A hybrid studio designed for cinematic scoring, live performance capture, and detailed sound design. Each piece of gear is curated to deliver clarity, warmth, and impact across every project.
-                </p>
+                <h2 class="text-4xl font-bold text-white mb-6" style="font-family: 'Bebas Neue', 'Oswald', sans-serif; letter-spacing: 0.08em;">Studio Specs</h2>
             </div>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
                 <div class="spec-card fade-on-scroll">
-                    <h3>Production & Monitoring</h3>
+                    <h3 style="font-family: 'Bebas Neue', 'Oswald', sans-serif; letter-spacing: 0.08em;">Production & Monitoring</h3>
                     <ul>
                         <li>Intel Core i7-13700K</li>
                         <li>128 GB DDR5 RAM</li>
@@ -359,7 +316,7 @@
                     </ul>
                 </div>
                 <div class="spec-card fade-on-scroll">
-                    <h3>Instruments & Pedals</h3>
+                    <h3 style="font-family: 'Bebas Neue', 'Oswald', sans-serif; letter-spacing: 0.08em;">Instruments & Pedals</h3>
                     <ul>
                         <li>Fender Telecaster</li>
                         <li>Taylor 114ce</li>
