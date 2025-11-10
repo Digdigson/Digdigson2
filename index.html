@@ -527,27 +527,6 @@
             }
         }
         
-        @media (max-width: 640px) {
-            #home {
-                height: 88vh;
-                padding-top: calc(var(--nav-h, 56px) + 8px);
-            }
-            
-            #home .hero-logo,
-            #home .logo-container,
-            #home img[alt*="DIGDIGSON"] {
-                top: 0 !important;
-                width: clamp(240px, 48vw, 480px) !important;
-                max-width: 90vw !important;
-            }
-            
-            #bio {
-                padding-top: 60px;
-                padding-bottom: 60px;
-                min-height: auto;
-            }
-        }
-        
         @media (max-width: 768px) {
             #home .hero-logo,
             #home .logo-container,
@@ -558,7 +537,8 @@
             
             #home {
                 place-items: center !important;
-                padding-top: calc(var(--nav-h, 56px) + 16px) !important;
+                padding-top: calc(var(--nav-h, 56px) + 12px) !important;
+                min-height: 82vh;
             }
 
             #home .hero-overlay {
@@ -571,6 +551,55 @@
                 margin-top: 0 !important;
                 margin-bottom: 0 !important;
                 position: relative !important;
+            }
+        }
+
+        @media (max-width: 640px) {
+            #home {
+                min-height: 74vh;
+                height: auto;
+                padding-top: calc(var(--nav-h, 56px) + 8px) !important;
+                align-content: start !important;
+                justify-items: center !important;
+            }
+            
+            #home .hero-logo,
+            #home .logo-container,
+            #home img[alt*="DIGDIGSON"] {
+                top: 0 !important;
+                width: clamp(240px, 70vw, 420px) !important;
+                max-width: 85vw !important;
+            }
+            
+            #bio {
+                padding-top: 60px;
+                padding-bottom: 60px;
+                min-height: auto;
+            }
+        }
+
+        .credits-grid {
+            scrollbar-width: none;
+        }
+
+        .credits-grid::-webkit-scrollbar {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .credits-grid {
+                display: grid !important;
+                grid-auto-flow: column;
+                grid-auto-columns: 85%;
+                overflow-x: auto;
+                gap: 1.5rem;
+                padding-bottom: 1.5rem;
+                scroll-snap-type: x mandatory;
+                -ms-overflow-style: none;
+            }
+
+            .credits-grid .credit-card {
+                scroll-snap-align: center;
             }
         }
     </style>
@@ -647,7 +676,7 @@
         <div class="max-w-7xl mx-auto">
             <div class="fade-on-scroll section-border section-border-credits">
                 <h2 class="text-4xl font-bold mb-12 text-white">Credits</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 credits-grid">
                     <!-- Last Night in Istanbul -->
                     <figure class="credit-card">
                         <img
@@ -874,6 +903,42 @@
         document.querySelectorAll('.fade-on-scroll').forEach(el => {
             observer.observe(el);
         });
+
+        // Credits auto-scroll on mobile
+        const creditsContainer = document.querySelector('.credits-grid');
+        if (creditsContainer) {
+            let autoScrollEnabled = true;
+            let lastUserInteraction = Date.now();
+
+            const pauseAutoScroll = () => {
+                autoScrollEnabled = false;
+                lastUserInteraction = Date.now();
+            };
+
+            ['touchstart', 'mousedown', 'wheel'].forEach(eventName => {
+                creditsContainer.addEventListener(eventName, pauseAutoScroll, { passive: true });
+            });
+
+            const maybeResumeAutoScroll = () => {
+                if (!autoScrollEnabled && Date.now() - lastUserInteraction > 6000) {
+                    autoScrollEnabled = true;
+                }
+            };
+
+            setInterval(maybeResumeAutoScroll, 1500);
+
+            setInterval(() => {
+                if (!autoScrollEnabled || window.innerWidth > 768) return;
+                const maxScroll = creditsContainer.scrollWidth - creditsContainer.clientWidth;
+                const nextScrollLeft = creditsContainer.scrollLeft + creditsContainer.clientWidth * 0.85;
+
+                if (nextScrollLeft >= maxScroll - 4) {
+                    creditsContainer.scrollTo({ left: 0, behavior: 'smooth' });
+                } else {
+                    creditsContainer.scrollTo({ left: nextScrollLeft, behavior: 'smooth' });
+                }
+            }, 5000);
+        }
 
         // Note: Credit card hover effects are now handled via CSS (.credit-card:hover .credit-overlay)
 
