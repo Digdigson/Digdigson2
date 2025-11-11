@@ -20,11 +20,11 @@ const NEWS_ITEMS: NewsItem[] = [
     dateISO: '2025-09-09',
   },
   {
-    title: 'Soundtrack Spotlight',
-    overview: 'Behind-the-scenes notes from the latest score release and mixing approach.',
-    url: 'https://example.com/soundtrack',
-    source: 'Studio Journal',
-    dateISO: '2025-06-18',
+    title: 'FC 26 Turkish Commentator Trailer',
+    overview: 'Official EA FC 26 reveal showcasing the Turkish commentator duo with fresh gameplay shots.',
+    url: 'https://www.youtube.com/watch?v=8v8qbcGgEao',
+    source: 'YouTube',
+    dateISO: '2025-09-09',
   },
   {
     title: 'Studio Walkthrough',
