@@ -1,80 +1,56 @@
 'use client';
 
-import { motion } from 'framer-motion';
-
-interface NewsItem {
-  date: string;
-  title: string;
-  description: string;
-}
-
-const newsItems: NewsItem[] = [
+const NEWS_ITEMS = [
   {
-    date: 'May 14, 2025',
-    title: 'Award Win for Best Musical Score',
-    description: 'Recent project wins Best Musical Score at International Film Festival.',
+    title: 'Hybrid Soundscapes Interview',
+    overview: 'A feature on building cinematic momentum with hybrid orchestration.',
+    url: 'https://example.com/interview',
+    actionLabel: 'Read Article',
   },
   {
-    date: 'September 29, 2024',
-    title: 'Nominations for Best Trailer Music',
-    description: 'Received 2 nominations for Best Trailer Music at Media Awards.',
+    title: 'Soundtrack Spotlight',
+    overview: 'Behind-the-scenes notes from the latest score release and mixing approach.',
+    url: 'https://example.com/soundtrack',
+    actionLabel: 'Visit Feature',
   },
   {
-    date: 'November 18, 2023',
-    title: 'Trailer Wins Best Score Award',
-    description: 'Game trailer music wins Best Score at Hollywood Music in Media Awards.',
-  },
-  {
-    date: 'February 16, 2023',
-    title: 'Feature Film Post Production',
-    description: 'Currently working on post-production for upcoming feature film.',
+    title: 'Studio Walkthrough',
+    overview: 'Tour the studio upgrade and listen to new hardwave-meets-cinematic cues.',
+    url: 'https://example.com/studio-tour',
+    actionLabel: 'Explore',
   },
 ];
 
 export default function News() {
   return (
-    <section id="news" className="py-20 px-6 bg-white">
-      <div className="max-w-4xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <h2 className="text-4xl font-bold mb-12 text-gray-900">Recent News</h2>
-          <div className="space-y-8">
-            {newsItems.map((item, index) => (
-              <motion.article
-                key={index}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="border-b border-gray-200 pb-8 last:border-b-0"
+    <section id="news" className="py-20 px-6 bg-gray-900">
+      <div className="mx-auto max-w-7xl">
+        <div className="space-y-10">
+          <h2 className="text-4xl font-bold text-white">News</h2>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {NEWS_ITEMS.map((item) => (
+              <article
+                key={item.title}
+                className="bg-white/[0.04] border border-white/10 rounded-2xl p-6 h-full flex flex-col justify-between"
               >
-                <time className="text-sm text-gray-500 mb-2 block">{item.date}</time>
-                <h3 className="text-2xl font-bold mb-2 text-gray-900">{item.title}</h3>
-                <p className="text-gray-600">{item.description}</p>
-              </motion.article>
+                <div>
+                  <h3 className="text-lg font-semibold text-white mb-2">{item.title}</h3>
+                  <p className="text-sm text-white/75 leading-relaxed mb-4">{item.overview}</p>
+                </div>
+                <a
+                  href={item.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-sm font-medium text-emerald-300 hover:text-emerald-200 transition"
+                >
+                  {item.actionLabel}
+                  <span aria-hidden="true">↗</span>
+                </a>
+              </article>
             ))}
           </div>
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="mt-8"
-          >
-            <a
-              href="#"
-              className="text-gray-900 font-semibold hover:underline"
-            >
-              More News →
-            </a>
-          </motion.div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
 }
-

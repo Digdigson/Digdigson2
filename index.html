@@ -220,12 +220,12 @@
             border-color: #8b5cf6; /* Purple */
         }
         
-        .section-border-credits {
+        .section-border-works {
             border-color: #ec4899; /* Pink */
         }
         
-        .section-border-music {
-            border-color: #f59e0b; /* Amber */
+        .section-border-news {
+            border-color: #f97316; /* Orange */
         }
         
         .section-border-studio {
@@ -626,8 +626,7 @@
             <div class="flex items-center justify-center">
                 <ul class="hidden md:flex items-center space-x-8">
                     <li><a href="index.html#home" class="nav-link text-base font-medium text-white transition-colors">HOME</a></li>
-                    <li><a href="index.html#credits" class="nav-link text-base font-medium text-gray-300 hover:text-white transition-colors">CREDITS</a></li>
-                    <li><a href="index.html#music" class="nav-link text-base font-medium text-gray-300 hover:text-white transition-colors">MUSIC</a></li>
+                    <li><a href="index.html#works" class="nav-link text-base font-medium text-gray-300 hover:text-white transition-colors">WORKS</a></li>
                     <li><a href="studio.html" class="nav-link text-base font-medium text-gray-300 hover:text-white transition-colors">STUDIO</a></li>
                     <li><a href="index.html#contact" class="nav-link text-base font-medium text-gray-300 hover:text-white transition-colors">CONTACT</a></li>
                 </ul>
@@ -640,8 +639,7 @@
         <div id="mobile-menu" class="hidden fixed top-16 left-0 right-0 z-40 md:hidden border-t border-gray-800" style="background: rgba(0, 0, 0, 0.92); backdrop-filter: none;">
             <ul class="px-6 py-4 space-y-4">
                 <li><a href="index.html#home" class="block text-base font-medium text-white transition-colors py-2 uppercase" style="font-family: 'Oswald', sans-serif; letter-spacing: 0.05em;">HOME</a></li>
-                <li><a href="index.html#credits" class="block text-base font-medium text-gray-300 hover:text-white transition-colors py-2 uppercase" style="font-family: 'Oswald', sans-serif; letter-spacing: 0.05em;">CREDITS</a></li>
-                <li><a href="index.html#music" class="block text-base font-medium text-gray-300 hover:text-white transition-colors py-2 uppercase" style="font-family: 'Oswald', sans-serif; letter-spacing: 0.05em;">MUSIC</a></li>
+                <li><a href="index.html#works" class="block text-base font-medium text-gray-300 hover:text-white transition-colors py-2 uppercase" style="font-family: 'Oswald', sans-serif; letter-spacing: 0.05em;">WORKS</a></li>
                 <li><a href="studio.html" class="block text-base font-medium text-gray-300 hover:text-white transition-colors py-2 uppercase" style="font-family: 'Oswald', sans-serif; letter-spacing: 0.05em;">STUDIO</a></li>
                 <li><a href="index.html#contact" class="block text-base font-medium text-gray-300 hover:text-white transition-colors py-2 uppercase" style="font-family: 'Oswald', sans-serif; letter-spacing: 0.05em;">CONTACT</a></li>
             </ul>
@@ -686,11 +684,11 @@
         </div>
     </section>
 
-    <!-- Credits Section -->
-    <section id="credits" class="py-20 px-6 bg-black">
+    <!-- Works Section -->
+    <section id="works" class="py-20 px-6 bg-black">
         <div class="max-w-7xl mx-auto">
-            <div class="fade-on-scroll section-border section-border-credits">
-                <h2 class="text-4xl font-bold mb-12 text-white">Credits</h2>
+            <div class="fade-on-scroll section-border section-border-works">
+                <h2 class="text-4xl font-bold mb-12 text-white">Works</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 credits-grid">
                     <!-- Last Night in Istanbul -->
                     <figure class="credit-card">
@@ -736,18 +734,52 @@
         </div>
     </section>
 
-    <!-- Music Section -->
-    <section id="music" class="py-20 px-6 bg-gray-900">
+    <!-- News Section -->
+    <section id="news" class="py-20 px-6 bg-gray-900">
         <div class="max-w-7xl mx-auto">
-            <div class="fade-on-scroll section-border section-border-music">
-                <h2 class="text-4xl font-bold mb-6 text-white">Music</h2>
-                <p class="text-lg text-gray-300 max-w-3xl leading-relaxed">
-                    Curated selections and new releases are currently being updated. Reach out via the contact section for private links, stems, or bespoke demos tailored to your project.
-                </p>
+            <div class="fade-on-scroll section-border section-border-news">
+                <h2 class="text-4xl font-bold mb-10 text-white">News</h2>
+                <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                    <article class="bg-white/[0.04] border border-white/10 rounded-2xl p-6 h-full flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-lg font-semibold text-white mb-2">Hybrid Soundscapes Interview</h3>
+                            <p class="text-sm text-white/75 leading-relaxed mb-4">
+                                A feature on building cinematic momentum with hybrid orchestration.
+                            </p>
+                        </div>
+                        <a href="https://example.com/interview" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm font-medium text-emerald-300 hover:text-emerald-200 transition">
+                            Read Article
+                            <span aria-hidden="true">↗</span>
+                        </a>
+                    </article>
+                    <article class="bg-white/[0.04] border border-white/10 rounded-2xl p-6 h-full flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-lg font-semibold text-white mb-2">Soundtrack Spotlight</h3>
+                            <p class="text-sm text-white/75 leading-relaxed mb-4">
+                                Behind-the-scenes notes from the latest score release and mixing approach.
+                            </p>
+                        </div>
+                        <a href="https://example.com/soundtrack" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm font-medium text-emerald-300 hover:text-emerald-200 transition">
+                            Visit Feature
+                            <span aria-hidden="true">↗</span>
+                        </a>
+                    </article>
+                    <article class="bg-white/[0.04] border border-white/10 rounded-2xl p-6 h-full flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-lg font-semibold text-white mb-2">Studio Walkthrough</h3>
+                            <p class="text-sm text-white/75 leading-relaxed mb-4">
+                                Tour the studio upgrade and listen to new hardwave-meets-cinematic cues.
+                            </p>
+                        </div>
+                        <a href="https://example.com/studio-tour" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm font-medium text-emerald-300 hover:text-emerald-200 transition">
+                            Explore
+                            <span aria-hidden="true">↗</span>
+                        </a>
+                    </article>
+                </div>
             </div>
         </div>
     </section>
-
     <!-- Contact Section -->
     <section id="contact" class="py-20 px-6 bg-black">
         <div class="max-w-4xl mx-auto">

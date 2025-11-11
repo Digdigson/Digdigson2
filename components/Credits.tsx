@@ -29,9 +29,9 @@ const credits = [
   },
 ];
 
-export default function Credits() {
+export default function Works() {
   return (
-    <section id="credits" className="py-20 px-6 bg-gray-50">
+    <section id="works" className="py-20 px-6 bg-gray-50">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -39,7 +39,7 @@ export default function Credits() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl font-bold mb-12 text-gray-900">Credits</h2>
+          <h2 className="text-4xl font-bold mb-12 text-gray-900">Works</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {credits.map((credit, index) => (
               <motion.div
