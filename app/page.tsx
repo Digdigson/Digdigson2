@@ -4,7 +4,6 @@ import Bio from '@/components/Bio';
 import Credits from '@/components/Credits';
 import Music from '@/components/Music';
 import Studio from '@/components/Studio';
-import News from '@/components/News';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 
@@ -17,7 +16,6 @@ export default function Home() {
       <Credits />
       <Music />
       <Studio />
-      <News />
       <Contact />
       <Footer />
     </main>
