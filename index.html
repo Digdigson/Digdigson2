@@ -606,6 +606,84 @@
             }
         }
 
+        .news-card {
+            display: block;
+            border-radius: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.03);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .news-card:hover,
+        .news-card:focus-visible {
+            transform: translateY(-2px);
+            border-color: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+        }
+
+        .news-card:focus-visible {
+            outline: 2px solid rgba(255, 255, 255, 0.4);
+            outline-offset: 3px;
+        }
+
+        .news-card-thumb {
+            aspect-ratio: 16 / 9;
+            overflow: hidden;
+            border-radius: 1rem 1rem 0 0;
+            background: rgba(255, 255, 255, 0.05);
+            position: relative;
+        }
+
+        .news-card-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .news-card:hover .news-card-thumb img {
+            transform: scale(1.02);
+        }
+
+        .news-card-body {
+            padding: 1.25rem;
+        }
+
+        .news-card-meta {
+            margin-top: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .news-card-meta span {
+            white-space: nowrap;
+        }
+
+        .news-card-meta svg {
+            margin-left: auto;
+            width: 1rem;
+            height: 1rem;
+            opacity: 0.7;
+            transition: opacity 0.2s ease;
+        }
+
+        .news-card:hover .news-card-meta svg {
+            opacity: 1;
+        }
+
+        .line-clamp-3 {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 3;
+            overflow: hidden;
+        }
+
         .contact-item-icon {
             flex-shrink: 0;
         }
@@ -742,54 +820,78 @@
             <div class="fade-on-scroll section-border section-border-news">
                 <h2 class="text-4xl font-bold mb-10 text-white">News</h2>
                 <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                    <article class="bg-white/[0.04] border border-white/10 rounded-2xl p-6 h-full flex flex-col justify-between" style="min-height: 220px;">
-                        <div>
-                            <h3 class="text-lg font-semibold text-white mb-2">FC 26’da Türkçe Spikerler Açıklandı</h3>
-                            <p class="text-sm text-white/75 leading-relaxed mb-4">
-                                Webtekno’nun haberine göre FC 26’da Özkan Öztürk ve Ertem Şener resmi olarak spiker koltuğunda. Fragmandaki repliklerden ilk ipuçları da paylaşıldı.
-                            </p>
+                    <a
+                        href="https://www.webtekno.com/fc-26-turkce-spikerler-h160322.html"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        role="article"
+                        aria-label="FC 26'da Turkce Spikerler Aciklandi - yeni sekmede ac"
+                        class="news-card"
+                    >
+                        <div class="news-card-thumb">
+                            <img src="assets/images/FC26_COVER.jpg" alt="" loading="lazy" decoding="async">
                         </div>
-                        <a href="https://www.webtekno.com/fc-26-turkce-spikerler-h160322.html" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm font-medium text-emerald-300 hover:text-emerald-200 transition">
-                            Haberi Oku
-                            <span aria-hidden="true">↗</span>
-                        </a>
-                    </article>
-                    <article class="bg-white/[0.04] border border-white/10 rounded-2xl p-6 h-full flex flex-col justify-between" style="min-height: 220px;">
-                        <div>
-                            <h3 class="text-lg font-semibold text-white mb-2">Hybrid Soundscapes Interview</h3>
-                            <p class="text-sm text-white/75 leading-relaxed mb-4">
-                                A feature on building cinematic momentum with hybrid orchestration.
+                        <div class="news-card-body">
+                            <h3 class="text-lg md:text-xl font-semibold leading-snug text-white">FC 26'da Turkce Spikerler Aciklandi</h3>
+                            <p class="mt-2 text-sm text-white/75 line-clamp-3">
+                                Webtekno, FC 26'da Ozkan Ozturk ve Ertem Sener'in spiker olacagini dogruladi; fragmandan ilk replikler paylasildi.
                             </p>
+                            <div class="news-card-meta">
+                                <span class="truncate">Webtekno</span>
+                                <span>&#8226;</span>
+                                <time datetime="2025-09-09">9 Eylul 2025</time>
+                                <svg aria-hidden="true">
+                                    <path fill="currentColor" d="M13 3h4v4h-2V6.41l-6.3 6.3-1.4-1.42 6.29-6.29H13V3zM5 5h5v2H7v10h10v-3h2v5H5V5z"></path>
+                                </svg>
+                            </div>
                         </div>
-                        <a href="https://example.com/interview" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm font-medium text-emerald-300 hover:text-emerald-200 transition">
-                            Read Article
-                            <span aria-hidden="true">↗</span>
-                        </a>
-                    </article>
-                    <article class="bg-white/[0.04] border border-white/10 rounded-2xl p-6 h-full flex flex-col justify-between" style="min-height: 220px;">
-                        <div>
-                            <h3 class="text-lg font-semibold text-white mb-2">Soundtrack Spotlight</h3>
-                            <p class="text-sm text-white/75 leading-relaxed mb-4">
+                    </a>
+                    <a
+                        href="https://example.com/soundtrack"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        role="article"
+                        aria-label="Soundtrack Spotlight - yeni sekmede ac"
+                        class="news-card"
+                    >
+                        <div class="news-card-body">
+                            <h3 class="text-lg md:text-xl font-semibold leading-snug text-white">Soundtrack Spotlight</h3>
+                            <p class="mt-2 text-sm text-white/75 line-clamp-3">
                                 Behind-the-scenes notes from the latest score release and mixing approach.
                             </p>
+                            <div class="news-card-meta">
+                                <span class="truncate">Studio Journal</span>
+                                <span>&#8226;</span>
+                                <time datetime="2025-06-18">18 Haziran 2025</time>
+                                <svg aria-hidden="true">
+                                    <path fill="currentColor" d="M13 3h4v4h-2V6.41l-6.3 6.3-1.4-1.42 6.29-6.29H13V3zM5 5h5v2H7v10h10v-3h2v5H5V5z"></path>
+                                </svg>
+                            </div>
                         </div>
-                        <a href="https://example.com/soundtrack" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm font-medium text-emerald-300 hover:text-emerald-200 transition">
-                            Visit Feature
-                            <span aria-hidden="true">↗</span>
-                        </a>
-                    </article>
-                    <article class="bg-white/[0.04] border border-white/10 rounded-2xl p-6 h-full flex flex-col justify-between" style="min-height: 220px;">
-                        <div>
-                            <h3 class="text-lg font-semibold text-white mb-2">Studio Walkthrough</h3>
-                            <p class="text-sm text-white/75 leading-relaxed mb-4">
+                    </a>
+                    <a
+                        href="https://example.com/studio-tour"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        role="article"
+                        aria-label="Studio Walkthrough - yeni sekmede ac"
+                        class="news-card"
+                    >
+                        <div class="news-card-body">
+                            <h3 class="text-lg md:text-xl font-semibold leading-snug text-white">Studio Walkthrough</h3>
+                            <p class="mt-2 text-sm text-white/75 line-clamp-3">
                                 Tour the studio upgrade and listen to new hardwave-meets-cinematic cues.
                             </p>
+                            <div class="news-card-meta">
+                                <span class="truncate">Studio Log</span>
+                                <span>&#8226;</span>
+                                <time datetime="2025-04-04">4 Nisan 2025</time>
+                                <svg aria-hidden="true">
+                                    <path fill="currentColor" d="M13 3h4v4h-2V6.41l-6.3 6.3-1.4-1.42 6.29-6.29H13V3zM5 5h5v2H7v10h10v-3h2v5H5V5z"></path>
+                                </svg>
+                            </div>
                         </div>
-                        <a href="https://example.com/studio-tour" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm font-medium text-emerald-300 hover:text-emerald-200 transition">
-                            Explore
-                            <span aria-hidden="true">↗</span>
-                        </a>
-                    </article>
+                    </a>
                 </div>
             </div>
         </div>
