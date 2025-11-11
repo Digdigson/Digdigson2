@@ -22,15 +22,6 @@ const NEWS_ITEMS: NewsItem[] = [
     dateISO: '2025-09-09',
     type: 'video',
   },
-  {
-    id: 'fc26-commentator-reel',
-    title: 'EA FC 26 Turkish Commentator Trailer (IG Reel)',
-    overview: 'Official reveal reel on Instagram.',
-    url: 'https://www.instagram.com/reel/DQSNeJ4jWe4/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==',
-    source: 'Instagram',
-    dateISO: '2025-09-09',
-    type: 'video',
-  },
 ];
 
 export default function News() {
