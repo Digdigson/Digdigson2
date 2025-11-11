@@ -1,11 +1,12 @@
-'use client';
+﻿'use client';
 
 const NEWS_ITEMS = [
   {
-    title: 'Hybrid Soundscapes Interview',
-    overview: 'A feature on building cinematic momentum with hybrid orchestration.',
-    url: 'https://example.com/interview',
-    actionLabel: 'Read Article',
+    title: 'FC 26â€™da TÃ¼rkÃ§e Spikerler AÃ§Ä±klandÄ±',
+    overview:
+      'Webtekno, FC 26â€™da Ã–zkan Ã–ztÃ¼rk ve Ertem Åenerâ€™in spiker olacaÄŸÄ±nÄ± doÄŸruladÄ±; fragmandan ilk replikler paylaÅŸÄ±ldÄ±.',
+    url: 'https://www.webtekno.com/fc-26-turkce-spikerler-h160322.html',
+    actionLabel: 'Haberi Oku',
   },
   {
     title: 'Soundtrack Spotlight',
@@ -32,6 +33,7 @@ export default function News() {
               <article
                 key={item.title}
                 className="bg-white/[0.04] border border-white/10 rounded-2xl p-6 h-full flex flex-col justify-between"
+                style={{ minHeight: '220px' }}
               >
                 <div>
                   <h3 className="text-lg font-semibold text-white mb-2">{item.title}</h3>
@@ -44,7 +46,7 @@ export default function News() {
                   className="inline-flex items-center gap-2 text-sm font-medium text-emerald-300 hover:text-emerald-200 transition"
                 >
                   {item.actionLabel}
-                  <span aria-hidden="true">↗</span>
+                  <span aria-hidden="true">â†—</span>
                 </a>
               </article>
             ))}
