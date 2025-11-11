@@ -12,6 +12,8 @@ type Props = {
 };
 
 const FALLBACK_SRC = '/images/news-fallback.jpg';
+const BULLET = '\u2022';
+const ARROW = '\u2197';
 
 const formatDate = (iso?: string) => {
   if (!iso) return null;
@@ -31,7 +33,7 @@ export default function NewsCard({ item }: Props) {
 
   const provider = detectProvider(item.url);
   const youtubeId = !item.image && provider === 'youtube' ? getYoutubeId(item.url) : null;
-  const youtubeThumb = youtubeId ? https://i.ytimg.com/vi//hqdefault.jpg : null;
+  const youtubeThumb = youtubeId ? `https://i.ytimg.com/vi/${youtubeId}/hqdefault.jpg` : null;
 
   useEffect(() => {
     let ignore = false;
@@ -76,7 +78,7 @@ export default function NewsCard({ item }: Props) {
       rel="noopener noreferrer"
       className="group block rounded-2xl border border-white/10 bg-white/5 transition hover:bg-white/10 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-white/20"
       role="article"
-      aria-label={${item.title} - yeni sekmede ac}
+      aria-label={`${item.title} - yeni sekmede ac`}
     >
       {computedImage ? (
         <div className="relative h-48 w-full overflow-hidden rounded-t-2xl">
@@ -97,9 +99,9 @@ export default function NewsCard({ item }: Props) {
         {(item.source || formattedDate) && (
           <div className="mt-4 flex items-center gap-2 text-xs text-white/60">
             {item.source ? <span>{item.source}</span> : null}
-            {formattedDate ? <span>• {formattedDate}</span> : null}
+            {formattedDate ? <span>{`${BULLET} ${formattedDate}`}</span> : null}
             <span className="ml-auto opacity-60 transition group-hover:opacity-100" aria-hidden="true">
-              ↗
+              {ARROW}
             </span>
           </div>
         )}
