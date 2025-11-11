@@ -27,7 +27,7 @@ export async function POST(req: Request) {
 
       if (!response.ok) {
         return NextResponse.json(
-          { ok: false, error: oEmbed  },
+          { ok: false, error: `oEmbed ${response.status}` },
           { status: 502 },
         );
       }
