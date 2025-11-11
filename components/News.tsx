@@ -1,4 +1,4 @@
-﻿import NewsCard from '@/components/NewsCard';
+import NewsCard from '@/components/NewsCard';
 import type { NewsItem } from '@/types/news';
 
 const NEWS_ITEMS: NewsItem[] = [
@@ -14,7 +14,7 @@ const NEWS_ITEMS: NewsItem[] = [
     type: 'article',
   },
   {
-    id: 'fc26-commentator-trailer',
+    id: 'fc26-commentator-trailer-yt',
     title: 'FC 26 Turkish Commentator Trailer',
     overview: 'Official EA FC 26 reveal showcasing the Turkish commentator duo with fresh gameplay shots.',
     url: 'https://www.youtube.com/watch?v=8v8qbcGgEao',
@@ -23,13 +23,13 @@ const NEWS_ITEMS: NewsItem[] = [
     type: 'video',
   },
   {
-    id: 'studio-walkthrough',
-    title: 'Studio Walkthrough',
-    overview: 'Tour the studio upgrade and listen to new hardwave-meets-cinematic cues.',
-    url: 'https://example.com/studio-tour',
-    source: 'Studio Log',
-    dateISO: '2025-04-04',
-    type: 'article',
+    id: 'fc26-commentator-reel',
+    title: 'EA FC 26 Turkish Commentator Trailer (IG Reel)',
+    overview: 'Official reveal reel on Instagram.',
+    url: 'https://www.instagram.com/reel/DQSNeJ4jWe4/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==',
+    source: 'Instagram',
+    dateISO: '2025-09-09',
+    type: 'video',
   },
 ];
 

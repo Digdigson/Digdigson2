@@ -1,5 +1,9 @@
-﻿import Image from 'next/image';
+'use client';
 
+import { useEffect, useState } from 'react';
+import Image from 'next/image';
+
+import { detectProvider } from '@/utils/detectProvider';
 import { getYoutubeId } from '@/utils/getYoutubeId';
 import type { NewsItem } from '@/types/news';
 
@@ -23,18 +27,56 @@ const formatDate = (iso?: string) => {
 };
 
 export default function NewsCard({ item }: Props) {
+  const [dynamicImg, setDynamicImg] = useState<string | null>(null);
+
+  const provider = detectProvider(item.url);
+  const youtubeId = !item.image && provider === 'youtube' ? getYoutubeId(item.url) : null;
+  const youtubeThumb = youtubeId ? https://i.ytimg.com/vi//hqdefault.jpg : null;
+
+  useEffect(() => {
+    let ignore = false;
+
+    async function fetchThumbnail() {
+      if (!item.image && provider === 'instagram') {
+        try {
+          const response = await fetch('/api/link-preview', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ url: item.url }),
+          });
+
+          if (!response.ok) {
+            return;
+          }
+
+          const data = (await response.json()) as { ok?: boolean; thumbnail?: string | null };
+          if (!ignore && data?.ok && data.thumbnail) {
+            setDynamicImg(data.thumbnail);
+          }
+        } catch (error) {
+          // ignore fetch failures
+        }
+      }
+    }
+
+    fetchThumbnail();
+
+    return () => {
+      ignore = true;
+    };
+  }, [item.image, item.url, provider]);
+
+  const computedImage = item.image ?? youtubeThumb ?? dynamicImg ?? FALLBACK_SRC;
   const formattedDate = formatDate(item.dateISO);
-  const youtubeId = !item.image ? getYoutubeId(item.url) : null;
-  const computedImage = item.image ?? (youtubeId ? `https://i.ytimg.com/vi/${youtubeId}/hqdefault.jpg` : FALLBACK_SRC);
 
   return (
     <a
       href={item.url}
       target="_blank"
       rel="noopener noreferrer"
-      className="group block cursor-pointer rounded-2xl border border-white/10 bg-white/[0.05] transition-transform duration-200 hover:-translate-y-[2px] hover:border-white/20 hover:bg-white/[0.1] hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-white/20"
+      className="group block rounded-2xl border border-white/10 bg-white/5 transition hover:bg-white/10 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-white/20"
       role="article"
-      aria-label={`${item.title} - yeni sekmede ac`}
+      aria-label={${item.title} - yeni sekmede ac}
     >
       {computedImage ? (
         <div className="relative h-48 w-full overflow-hidden rounded-t-2xl">
@@ -42,31 +84,22 @@ export default function NewsCard({ item }: Props) {
             src={computedImage}
             alt={item.title}
             fill
-            className="object-cover transition duration-300 group-hover:scale-105"
-            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            className="scale-[1.01] object-cover transition duration-300 group-hover:scale-105"
+            sizes="(max-width: 768px) 100vw, 50vw"
             priority={false}
           />
         </div>
       ) : null}
 
       <div className="p-5">
-        <h3 className="text-lg font-semibold leading-snug tracking-tight text-white md:text-xl">{item.title}</h3>
-        {item.overview ? (
-          <p
-            className="mt-2 text-sm text-white/70"
-            style={{ display: '-webkit-box', WebkitBoxOrient: 'vertical', WebkitLineClamp: 3, overflow: 'hidden' }}
-          >
-            {item.overview}
-          </p>
-        ) : null}
-
+        <h3 className="text-lg font-semibold tracking-tight text-white md:text-xl">{item.title}</h3>
+        {item.overview ? <p className="mt-2 text-sm text-white/70 line-clamp-3">{item.overview}</p> : null}
         {(item.source || formattedDate) && (
           <div className="mt-4 flex items-center gap-2 text-xs text-white/60">
-            {item.source ? <span className="truncate">{item.source}</span> : null}
-            {item.source && formattedDate ? <span aria-hidden="true">{String.fromCharCode(8226)}</span> : null}
-            {formattedDate ? <time dateTime={item.dateISO}>{formattedDate}</time> : null}
-            <span className="ml-auto text-base opacity-60 transition group-hover:opacity-100" aria-hidden="true">
-              {String.fromCharCode(8599)}
+            {item.source ? <span>{item.source}</span> : null}
+            {formattedDate ? <span>• {formattedDate}</span> : null}
+            <span className="ml-auto opacity-60 transition group-hover:opacity-100" aria-hidden="true">
+              ↗
             </span>
           </div>
         )}
