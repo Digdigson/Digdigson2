@@ -55,6 +55,10 @@
         /* CSS Variables */
         :root {
             --nav-h: 72px; /* fallback header height */
+            --overlay-bg: rgba(0, 0, 0, 0.6);
+            --panel-w: 88vw;
+            --anim-dur: 220ms;
+            --anim-ease: cubic-bezier(.22,.61,.36,1);
         }
         
         /* Fonts */
@@ -321,6 +325,72 @@
         
         .nav-link:hover::after {
             width: 100%;
+        }
+        
+        .hamburger {
+            transition: color 0.2s ease;
+        }
+        
+        .mobile-menu[hidden] {
+            display: none;
+        }
+        
+        .mobile-menu {
+            position: fixed;
+            inset: 0;
+            z-index: 50;
+        }
+        
+        .mobile-menu__overlay {
+            position: absolute;
+            inset: 0;
+            background: var(--overlay-bg);
+            opacity: 0;
+            transition: opacity var(--anim-dur) var(--anim-ease);
+            will-change: opacity;
+        }
+        
+        .mobile-menu__panel {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: var(--panel-w);
+            max-width: 400px;
+            background: #0d0d0f;
+            color: #fff;
+            transform: translateX(100%);
+            transition: transform var(--anim-dur) var(--anim-ease), opacity var(--anim-dur) var(--anim-ease);
+            opacity: 0.98;
+            display: flex;
+            flex-direction: column;
+            padding: 20px 16px;
+            gap: 12px;
+            overflow-y: auto;
+        }
+        
+        .mobile-menu.is-open .mobile-menu__overlay {
+            opacity: 1;
+        }
+        
+        .mobile-menu.is-open .mobile-menu__panel {
+            transform: translateX(0);
+        }
+        
+        .mobile-menu__panel a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        
+        .mobile-menu__panel a:hover,
+        .mobile-menu__panel a:focus {
+            color: #d4d4d8;
+        }
+        
+        html.body--lock,
+        body.body--lock {
+            overflow: hidden;
         }
         
         /* Header - transparent and fixed */
@@ -631,22 +701,23 @@
                     <li><a href="studio.html" class="nav-link text-base font-medium text-gray-300 hover:text-white transition-colors">STUDIO</a></li>
                     <li><a href="index.html#contact" class="nav-link text-base font-medium text-gray-300 hover:text-white transition-colors">CONTACT</a></li>
                 </ul>
-                <button id="mobile-menu-btn" class="md:hidden text-gray-300 hover:text-white absolute right-6" aria-label="Toggle menu">
+                <button id="nav-toggle" aria-expanded="false" aria-controls="mobile-menu" class="hamburger md:hidden text-gray-300 hover:text-white absolute right-6" aria-label="Toggle menu">
                     <i class="fas fa-bars text-xl"></i>
                 </button>
             </div>
         </nav>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden fixed top-16 left-0 right-0 z-40 backdrop-blur-sm shadow-lg md:hidden border-t border-gray-800">
-            <ul class="px-6 py-4 space-y-4">
-                <li><a href="index.html#home" class="block text-base font-medium text-white transition-colors py-2 uppercase" style="font-family: 'Oswald', sans-serif; letter-spacing: 0.05em;">HOME</a></li>
-                <li><a href="index.html#credits" class="block text-base font-medium text-gray-300 hover:text-white transition-colors py-2 uppercase" style="font-family: 'Oswald', sans-serif; letter-spacing: 0.05em;">CREDITS</a></li>
-                <li><a href="index.html#music" class="block text-base font-medium text-gray-300 hover:text-white transition-colors py-2 uppercase" style="font-family: 'Oswald', sans-serif; letter-spacing: 0.05em;">MUSIC</a></li>
-                <li><a href="studio.html" class="block text-base font-medium text-gray-300 hover:text-white transition-colors py-2 uppercase" style="font-family: 'Oswald', sans-serif; letter-spacing: 0.05em;">STUDIO</a></li>
-                <li><a href="index.html#contact" class="block text-base font-medium text-gray-300 hover:text-white transition-colors py-2 uppercase" style="font-family: 'Oswald', sans-serif; letter-spacing: 0.05em;">CONTACT</a></li>
-            </ul>
-        </div>
     </header>
+
+    <div id="mobile-menu" class="mobile-menu md:hidden" hidden>
+        <div class="mobile-menu__overlay" aria-hidden="true"></div>
+        <nav class="mobile-menu__panel" role="dialog" aria-modal="true">
+            <a href="index.html#home" class="block text-base font-medium uppercase" style="font-family: 'Oswald', sans-serif; letter-spacing: 0.05em;">HOME</a>
+            <a href="index.html#credits" class="block text-base font-medium uppercase text-gray-300 hover:text-white transition-colors" style="font-family: 'Oswald', sans-serif; letter-spacing: 0.05em;">CREDITS</a>
+            <a href="index.html#music" class="block text-base font-medium uppercase text-gray-300 hover:text-white transition-colors" style="font-family: 'Oswald', sans-serif; letter-spacing: 0.05em;">MUSIC</a>
+            <a href="studio.html" class="block text-base font-medium uppercase text-gray-300 hover:text-white transition-colors" style="font-family: 'Oswald', sans-serif; letter-spacing: 0.05em;">STUDIO</a>
+            <a href="index.html#contact" class="block text-base font-medium uppercase text-gray-300 hover:text-white transition-colors" style="font-family: 'Oswald', sans-serif; letter-spacing: 0.05em;">CONTACT</a>
+        </nav>
+    </div>
 
     <!-- Hero Section -->
     <!-- Updated: Hero video background section -->
@@ -815,29 +886,62 @@
         });
 
         // Mobile menu toggle
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const navToggle = document.getElementById('nav-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
-        const mobileMenuIcon = mobileMenuBtn.querySelector('i');
+        const mobileOverlay = mobileMenu?.querySelector('.mobile-menu__overlay');
+        const mobileLinks = mobileMenu?.querySelectorAll('.mobile-menu__panel a') || [];
+        const toggleIcon = navToggle?.querySelector('i');
+        const MENU_ANIM_MS = 230;
 
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-            if (mobileMenu.classList.contains('hidden')) {
-                mobileMenuIcon.classList.remove('fa-times');
-                mobileMenuIcon.classList.add('fa-bars');
+        function openMenu() {
+            if (!mobileMenu) return;
+            mobileMenu.hidden = false;
+            requestAnimationFrame(() => {
+                mobileMenu.classList.add('is-open');
+            });
+            document.documentElement.classList.add('body--lock');
+            navToggle?.setAttribute('aria-expanded', 'true');
+            toggleIcon?.classList.remove('fa-bars');
+            toggleIcon?.classList.add('fa-times');
+        }
+
+        function closeMenu() {
+            if (!mobileMenu) return;
+            mobileMenu.classList.remove('is-open');
+            navToggle?.setAttribute('aria-expanded', 'false');
+            toggleIcon?.classList.remove('fa-times');
+            toggleIcon?.classList.add('fa-bars');
+            setTimeout(() => {
+                mobileMenu.hidden = true;
+                document.documentElement.classList.remove('body--lock');
+            }, MENU_ANIM_MS);
+        }
+
+        navToggle?.addEventListener('click', () => {
+            const isOpen = navToggle.getAttribute('aria-expanded') === 'true';
+            if (isOpen) {
+                closeMenu();
             } else {
-                mobileMenuIcon.classList.remove('fa-bars');
-                mobileMenuIcon.classList.add('fa-times');
+                openMenu();
             }
         });
 
-        // Close mobile menu when clicking a link
-        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileOverlay?.addEventListener('click', closeMenu);
+
         mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-                mobileMenuIcon.classList.remove('fa-times');
-                mobileMenuIcon.classList.add('fa-bars');
-            });
+            link.addEventListener('click', closeMenu);
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeMenu();
+            }
+        });
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 768) {
+                closeMenu();
+            }
         });
 
         // Mobile tap-to-toggle for credit cards with overlays
